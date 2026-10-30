@@ -9,7 +9,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Core Colours from Figma
+        // Core Figma Colours
         burnt: {
           orange: "#BD5216",
           dark: "#9E410E",
@@ -37,7 +37,7 @@ export default {
         },
         blush: "#F1E4D5",
         clay: "#F3DDD0",
-        // Text
+        // Typography text shades
         body: {
           brown: "#6E4E3A",
         },
@@ -45,18 +45,14 @@ export default {
         muted: "#7A746B",
       },
       borderRadius: {
-        btn: "14px",
-        card: "20px",
-        "card-lg": "24px",
+        btn: "14px",        // Figma Buttons
+        card: "20px",       // Figma Cards
+        "card-lg": "24px",  // Figma Large cards & images
       },
       fontFamily: {
         serif: ["var(--font-rufina)", "serif"],
         wordmark: ["var(--font-gabriela)", "serif"],
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-      },
-      maxWidth: {
-        mobile: "393px",
-        content: "350px",
       },
       boxShadow: {
         soft: "0 10px 30px -10px rgba(89, 50, 19, 0.08)",

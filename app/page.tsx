@@ -1,91 +1,101 @@
-"use client";
-
-import { useState } from "react";
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import HowItWorks from "@/components/HowItWorks";
-import ClosingCTA from "@/components/ClosingCTA";
-import Footer from "@/components/Footer";
-import CallMeModal from "@/components/CallMeModal";
-import CalendlyModal from "@/components/CalendlyModal";
+import Image from "next/image";
 
 export default function Home() {
-  const [isCallModalOpen, setIsCallModalOpen] = useState(false);
-  const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
-
-  // Environment variables with sensible defaults
-  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "15551234567";
-  const defaultMessage = encodeURIComponent(
-    "Hello Nexty team! I would like to learn more about how Nexty connects me with local activities and companions."
-  );
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${defaultMessage}`;
-  const calendlyUrl =
-    process.env.NEXT_PUBLIC_CALENDLY_URL || "https://calendly.com";
-
   return (
-    <div className="min-h-screen flex flex-col bg-cream text-deep-brown selection:bg-burnt-orange selection:text-white">
-      {/* Top Navbar */}
-      <Navbar
-        onOpenCallModal={() => setIsCallModalOpen(true)}
-        onOpenCalendly={() => setIsCalendlyOpen(true)}
-      />
-
-      {/* Main Content (Mobile-First Container) */}
-      <main className="flex-1 w-full max-w-[393px] md:max-w-xl mx-auto shadow-sm md:shadow-md md:my-6 md:rounded-card-lg overflow-hidden bg-cream md:border md:border-sand-border/60">
-        <Hero
-          onOpenCallModal={() => setIsCallModalOpen(true)}
-          onOpenCalendly={() => setIsCalendlyOpen(true)}
-          whatsappUrl={whatsappUrl}
+    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
+        <Image
+          className="dark:invert"
+          src="/next.svg"
+          alt="Next.js logo"
+          width={180}
+          height={38}
+          priority
         />
+        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
+          <li className="mb-2">
+            Get started by editing{" "}
+            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
+              app/page.tsx
+            </code>
+            .
+          </li>
+          <li>Save and see your changes instantly.</li>
+        </ol>
 
-        <HowItWorks />
-
-        <ClosingCTA
-          onOpenCallModal={() => setIsCallModalOpen(true)}
-          onOpenCalendly={() => setIsCalendlyOpen(true)}
-          whatsappUrl={whatsappUrl}
-        />
-
-        <Footer />
-      </main>
-
-      {/* Floating Quick Action Pill for Mobile */}
-      <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-40 w-[90%] max-w-[350px] md:hidden">
-        <div className="bg-deep-brown/95 text-cream backdrop-blur-md rounded-full px-3 py-2 flex items-center justify-between shadow-elevated border border-sand-border/30">
-          <button
-            onClick={() => setIsCallModalOpen(true)}
-            className="flex-1 text-center py-1.5 text-xs font-semibold hover:text-sand transition-colors border-r border-cream/20"
-          >
-            📞 Call Me
-          </button>
-          <button
-            onClick={() => setIsCalendlyOpen(true)}
-            className="flex-1 text-center py-1.5 text-xs font-semibold hover:text-sand transition-colors border-r border-cream/20"
-          >
-            📅 Schedule
-          </button>
+        <div className="flex gap-4 items-center flex-col sm:flex-row">
           <a
-            href={whatsappUrl}
+            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
+            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex-1 text-center py-1.5 text-xs font-semibold text-[#25D366] hover:brightness-110 transition-colors"
           >
-            💬 WhatsApp
+            <Image
+              className="dark:invert"
+              src="/vercel.svg"
+              alt="Vercel logomark"
+              width={20}
+              height={20}
+            />
+            Deploy now
+          </a>
+          <a
+            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
+            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Read our docs
           </a>
         </div>
-      </div>
-
-      {/* Modals for Interaction 1 and 2 */}
-      <CallMeModal
-        isOpen={isCallModalOpen}
-        onClose={() => setIsCallModalOpen(false)}
-      />
-
-      <CalendlyModal
-        isOpen={isCalendlyOpen}
-        onClose={() => setIsCalendlyOpen(false)}
-        calendlyUrl={calendlyUrl}
-      />
+      </main>
+      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
+        <a
+          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            aria-hidden
+            src="/file.svg"
+            alt="File icon"
+            width={16}
+            height={16}
+          />
+          Learn
+        </a>
+        <a
+          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            aria-hidden
+            src="/window.svg"
+            alt="Window icon"
+            width={16}
+            height={16}
+          />
+          Examples
+        </a>
+        <a
+          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
+          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Image
+            aria-hidden
+            src="/globe.svg"
+            alt="Globe icon"
+            width={16}
+            height={16}
+          />
+          Go to nextjs.org →
+        </a>
+      </footer>
     </div>
   );
 }
