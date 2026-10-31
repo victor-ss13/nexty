@@ -1,6 +1,11 @@
 import { PhoneCall, Calendar, MessageCircle } from "lucide-react";
 
-export default function ClosingCTA() {
+interface ClosingCTAProps {
+  onOpenCallModal: () => void;
+  onOpenCalendly: () => void;
+}
+
+export default function ClosingCTA({ onOpenCallModal, onOpenCalendly }: ClosingCTAProps) {
     return (
         <section className="py-20 px-6 bg-gradient-to-b from-cream via-sand-light/50 to-cream">
             <div className="max-w-3xl mx-auto text-center">
@@ -15,13 +20,13 @@ export default function ClosingCTA() {
                 {/* Botões de Ação Final */}
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 max-w-md sm:max-w-xl mx-auto">
                     {/* Call Me Now */}
-                    <button className="w-full sm:w-auto flex-1 bg-sage hover:bg-sage-dark text-white font-semibold py-3.5 px-5 rounded-btn transition-colors text-sm flex items-center justify-center gap-2 shadow-sm">
+                    <button onClick={onOpenCallModal} className="w-full sm:w-auto flex-1 bg-sage hover:bg-sage-dark text-white font-semibold py-3.5 px-5 rounded-btn transition-colors text-sm flex items-center justify-center gap-2 shadow-sm">
                         <PhoneCall className="w-4 h-4"/>
                         <span>Call Me Now</span>
                     </button>
 
                     {/* Book a Call */}
-                    <button className="w-full sm:w-auto flex-1 bg-burnt-orange hover:bg-burnt-dark text-white font-semibold py-3.5 px-5 rounded-btn transition-colors text-sm flex items-center justify-center gap-2 shadow-sm">
+                    <button onClick={onOpenCalendly} className="w-full sm:w-auto flex-1 bg-burnt-orange hover:bg-burnt-dark text-white font-semibold py-3.5 px-5 rounded-btn transition-colors text-sm flex items-center justify-center gap-2 shadow-sm">
                         <Calendar className="w-4 h-4"/>
                         <span>Book a Call</span>
                     </button>

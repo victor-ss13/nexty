@@ -4,7 +4,12 @@ import { useState } from "react";
 import Image from "next/image";
 import { PhoneCall, Calendar, Coffee, Footprints, Music, Compass, Check } from "lucide-react";
 
-export default function Hero() {
+interface HeroProps {
+    onOpenCallModal: () => void;
+    onOpenCalendly: () => void;
+}
+
+export default function Hero({ onOpenCallModal, onOpenCalendly }: HeroProps) {
     const [selectedTag, setSelectedTag] = useState("Walks");
 
     const tags = [
@@ -44,13 +49,18 @@ export default function Hero() {
                         <div className="w-full max-w-md space-y-3">
                             <div className="flex flex-col sm:flex-row gap-3">
                                 {/* 1. Call Me Now */}
-                                <button className="flex-1 bg-sage hover:bg-sage-dark text-white font-semibold py-3.5 px-5 rounded-btn transition-all text-sm flex items-center justify-center gap-2 shadow-sm active:scale-[0.98]">
+                                <button
+                                    onClick={onOpenCallModal}
+                                    className="flex-1 bg-sage hover:bg-sage-dark text-white font-semibold py-3.5 px-5 rounded-btn transition-all text-sm flex items-center justify-center gap-2 shadow-sm active:scale-[0.98]"
+                                >
                                     <PhoneCall className="w-4 h-4" />
                                     <span>Call Me Now</span>
                                 </button>
-
                                 {/* 2. Schedule a Call (Calendly) */}
-                                <button className="flex-1 bg-burnt-orange hover:bg-burnt-dark text-white font-semibold py-3.5 px-5 rounded-btn transition-all text-sm flex items-center justify-center gap-2 shadow-sm active:scale-[0.98]">
+                                <button
+                                    onClick={onOpenCalendly}
+                                    className="flex-1 bg-burnt-orange hover:bg-burnt-dark text-white font-semibold py-3.5 px-5 rounded-btn transition-all text-sm flex items-center justify-center gap-2 shadow-sm active:scale-[0.98]"
+                                >
                                     <Calendar className="w-4 h-4" />
                                     <span>Schedule a Call</span>
                                 </button>
